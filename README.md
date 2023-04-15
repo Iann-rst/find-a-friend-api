@@ -18,4 +18,23 @@ Nesse desafio será desenvolvido uma API para a adoção de animais, a FindAFrie
 - [ ] Todos os filtros, além da cidade, são opcionais;
 - [ ] Para uma ORG acessar a aplicação como admin, ela precisa estar logada;
 
+## Propriedades dos registros
+- ORG:
+  - ID;
+  - nome do responsável;
+  - email;
+  - CEP;
+  - Endereço;
+  - Whatsapp;
+  - Senha;
 
+- Pets:
+  - ID;
+  - nome do pet;
+  - sobre;
+  - cidade;
+  - idade: filhote, adolescente, adulto
+  - porte: pequeno, médio, grande
+  - independência; baixo, médio, alto
+  - tipo: gato, cachorro
+  - ambiente;
