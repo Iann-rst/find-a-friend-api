@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Iann-rst/find-a-friend-api#readme",
   "dependencies": {
+    "dotenv": "16.0.3",
     "fastify": "4.15.0",
     "zod": "3.21.4"
   },
