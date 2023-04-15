@@ -41,10 +41,12 @@ model Org {
   cep      String
   whatsapp String
   password String
+  pets     Pet[]
 
   @@map("orgs")
 }
 
+//Uma org pode ter vários pets, mas 1 pet só tem uma org.
 model Pet {
   id           String        @id @default(uuid())
   name         String
@@ -54,6 +56,9 @@ model Pet {
   size         Sizes
   independence Independences
   type         Types
+
+  org    Org    @relation(fields: [org_id], references: [id])
+  org_id String
 
   @@map("pets")
 }
