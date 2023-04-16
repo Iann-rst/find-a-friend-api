@@ -38,3 +38,6 @@ Nesse desafio será desenvolvido uma API para a adoção de animais, a FindAFrie
   - independência; baixo, médio, alto
   - tipo: gato, cachorro
   - org_id;
+
+## Testes Unitários
+- [ ] Testar UseCases com Vitest;
