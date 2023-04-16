@@ -25,4 +25,26 @@ export class PrismaPetRepository implements PetRepository {
 
     return pets
   }
+
+  async findById(id: string) {
+    const pet = await prisma.pet.findFirst({
+      where: {
+        id,
+      },
+      include: {
+        org: {
+          select: {
+            id: true,
+            email: true,
+            address: true,
+            cep: true,
+            name: true,
+            whatsapp: true,
+          },
+        },
+      },
+    })
+
+    return pet
+  }
 }
