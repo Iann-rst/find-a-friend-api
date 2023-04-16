@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Iann-rst/find-a-friend-api#readme",
   "dependencies": {
+    "@fastify/jwt": "6.7.1",
     "@prisma/client": "4.12.0",
     "bcryptjs": "2.4.3",
     "dotenv": "16.0.3",
