@@ -37,4 +37,4 @@ Nesse desafio será desenvolvido uma API para a adoção de animais, a FindAFrie
   - porte: pequeno, médio, grande
   - independência; baixo, médio, alto
   - tipo: gato, cachorro
-  - ambiente;
+  - org_id;
