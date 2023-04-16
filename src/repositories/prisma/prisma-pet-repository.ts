@@ -10,4 +10,17 @@ export class PrismaPetRepository implements PetRepository {
 
     return pet
   }
+
+  async findByCity(city: string) {
+    const pets = await prisma.pet.findMany({
+      where: {
+        city: {
+          equals: city,
+          mode: 'insensitive',
+        },
+      },
+    })
+
+    return pets
+  }
 }
