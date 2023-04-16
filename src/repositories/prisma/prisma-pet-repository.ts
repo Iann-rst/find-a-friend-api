@@ -1,4 +1,5 @@
 import { prisma } from '@/lib/prisma'
+import { SearchPetsFilters } from '@/utils/pets-filter-types'
 import { Prisma } from '@prisma/client'
 import { PetRepository } from '../pet-repository'
 
@@ -11,13 +12,14 @@ export class PrismaPetRepository implements PetRepository {
     return pet
   }
 
-  async findByCity(city: string) {
+  async findByCity({ city, query }: SearchPetsFilters) {
     const pets = await prisma.pet.findMany({
       where: {
         city: {
           equals: city,
           mode: 'insensitive',
         },
+        ...query,
       },
     })
 
