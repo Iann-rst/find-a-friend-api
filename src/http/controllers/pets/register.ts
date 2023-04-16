@@ -1,4 +1,6 @@
+import { PrismaOrgRepository } from '@/repositories/prisma/prisma-org-repository'
 import { PrismaPetRepository } from '@/repositories/prisma/prisma-pet-repository'
+import { OrgNotFoundError } from '@/use-cases/errors/org-not-found-error'
 import { RegisterPetUseCase } from '@/use-cases/register-pet'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
@@ -35,7 +37,11 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
     const org_id = request.user.sub
 
     const petRepository = new PrismaPetRepository()
-    const registerPetUseCase = new RegisterPetUseCase(petRepository)
+    const orgRepository = new PrismaOrgRepository()
+    const registerPetUseCase = new RegisterPetUseCase(
+      petRepository,
+      orgRepository,
+    )
 
     const { pet } = await registerPetUseCase.execute({
       name,
@@ -50,6 +56,11 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
 
     return reply.status(201).send({ pet })
   } catch (error) {
+    if (error instanceof OrgNotFoundError) {
+      return reply.status(404).send({
+        message: error.message,
+      })
+    }
     console.log(error)
     throw error
   }
