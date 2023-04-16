@@ -22,7 +22,16 @@ export async function authenticate(
     const { org } = await authenticateOrgUseCase.execute({ email, password })
 
     // TODO: Utilizar JWT e retornar apenas o token
-    return reply.status(200).send(org)
+    const token = await reply.jwtSign(
+      {},
+      {
+        sign: {
+          sub: org.id,
+        },
+      },
+    )
+
+    return reply.status(200).send({ token })
   } catch (error) {
     if (error instanceof InvalidCredentialsError) {
       return reply.status(400).send({
