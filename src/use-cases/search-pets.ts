@@ -4,7 +4,7 @@ import { Pet } from '@prisma/client'
 
 interface SearchPetsUseCaseRequest {
   city: string
-  query: SearchQuery
+  query?: SearchQuery
 }
 
 interface SearchPetsUseCaseResponse {
