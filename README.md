@@ -40,4 +40,4 @@ Nesse desafio será desenvolvido uma API para a adoção de animais, a FindAFrie
   - org_id;
 
 ## Testes Unitários
-- [ ] Testar UseCases com Vitest;
+- [x] Testar UseCases com Vitest;
