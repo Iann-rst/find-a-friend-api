@@ -48,4 +48,5 @@ Segue abaixo o link para acessar o Layout da aplicação que utilizaria essa API
 ## Testes Unitários
 - [x] Testar UseCases com Vitest;
 
-
+## API IBGE
+- [x] Buscar os estados e cidades;
