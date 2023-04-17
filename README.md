@@ -2,6 +2,12 @@
 
 Nesse desafio será desenvolvido uma API para a adoção de animais, a FindAFriend API, utilizando SOLID e testes.
 
+## Contexto da aplicação
+É comum ao estar desenvolvedor uma API, imaginar como esses dados vão estar sendo utilizados pelo cliente web e/ou mobile.
+Segue abaixo o link para acessar o Layout da aplicação que utilizaria essa API.
+
+- [Layout da aplicação](https://www.figma.com/file/sIjvM84tYyv0NyJzdyvEbJ/Find-A-Friend-(APP)?node-id=1%3A2&t=gjTm3ka3Uj7FXTFV-1)
+
 ## Regras da aplicação
 - [x] Deve ser possível cadastrar um pet;
 - [x] Deve ser possível listar todos os pets disponíveis para adoção em uma cidade;
@@ -41,3 +47,5 @@ Nesse desafio será desenvolvido uma API para a adoção de animais, a FindAFrie
 
 ## Testes Unitários
 - [x] Testar UseCases com Vitest;
+
+
