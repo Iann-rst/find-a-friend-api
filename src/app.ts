@@ -3,6 +3,7 @@ import fastifyJwt from '@fastify/jwt'
 import fastify from 'fastify'
 import { ZodError } from 'zod'
 import { env } from './env'
+import { locationRoutes } from './http/controllers/location/routes'
 import { orgRoutes } from './http/controllers/org/routes'
 import { petsRoutes } from './http/controllers/pets/routes'
 
@@ -20,6 +21,10 @@ app.register(fastifyJwt, {
 })
 
 app.register(fastifyCookie)
+
+app.register(locationRoutes, {
+  prefix: 'location',
+})
 
 app.register(orgRoutes)
 app.register(petsRoutes, {
