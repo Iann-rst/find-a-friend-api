@@ -26,6 +26,7 @@ export class InMemoryPetRepository implements PetRepository {
 
   async findByCity({ city, query }: SearchPetsFilters): Promise<Pet[]> {
     const pets = this.pets.filter((pet) => pet.city === city)
+
     if (!query) {
       return pets
     }
@@ -37,10 +38,6 @@ export class InMemoryPetRepository implements PetRepository {
         (!query.size || pet.size === query?.size) &&
         (!query.type || pet.type === query?.type),
     )
-
-    if (!new_pets) {
-      return []
-    }
 
     return new_pets
   }
