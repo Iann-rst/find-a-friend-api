@@ -6,6 +6,7 @@ import { OrgNotFoundError } from './errors/org-not-found-error'
 
 type RegisterPetUseCaseRequest = registerPet & {
   org_id: string
+  city: string
 }
 
 interface RegisterPetUseCaseResponse {

@@ -1,9 +1,10 @@
 import { PrismaOrgRepository } from '@/repositories/prisma/prisma-org-repository'
 import { PrismaPetRepository } from '@/repositories/prisma/prisma-pet-repository'
-import { OrgNotFoundError } from '@/use-cases/errors/org-not-found-error'
 import { RegisterPetUseCase } from '@/use-cases/register-pet'
+import axios from 'axios'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
+import { OrgNotFoundError } from './../../../use-cases/errors/org-not-found-error'
 
 const registerBodySchema = z.object({
   name: z
@@ -16,11 +17,6 @@ const registerBodySchema = z.object({
     .trim()
     .nonempty({ message: 'Informe uma descrição do pet.' }),
 
-  city: z
-    .string({ required_error: 'Informe a cidade.' })
-    .trim()
-    .nonempty({ message: 'Informe a cidade.' }),
-
   age: z.enum(['cub', 'adolescent', 'elderly']),
   size: z.enum(['small', 'medium', 'big']),
   independence: z.enum(['low', 'medium', 'high']),
@@ -31,7 +27,7 @@ export type registerPet = z.infer<typeof registerBodySchema>
 
 export async function register(request: FastifyRequest, reply: FastifyReply) {
   try {
-    const { name, description, age, city, independence, size, type } =
+    const { name, description, age, independence, size, type } =
       registerBodySchema.parse(request.body)
 
     const org_id = request.user.sub
@@ -42,6 +38,17 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
       petRepository,
       orgRepository,
     )
+
+    const org = await orgRepository.findById(org_id)
+
+    if (!org) {
+      return reply.status(404).send({
+        message: 'Org não cadastrada!',
+      })
+    }
+
+    const response = await axios.get(`http://viacep.com.br/ws/${org.cep}/json/`)
+    const city: string = response.data.localidade
 
     const { pet } = await registerPetUseCase.execute({
       name,
